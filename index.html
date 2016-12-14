@@ -265,7 +265,7 @@
               
                 
                 <a class="post-title-link" href="/2016/12/14/手机浏览器广告拦截功能文档/" itemprop="url">
-                  未命名
+                  手机浏览器广告拦截实现及自动化测试
                 </a>
               
             
@@ -324,8 +324,7 @@
       
         
           
-            <hr>
-<h2 id="title-手机浏览器广告拦截功能文档"><a href="#title-手机浏览器广告拦截功能文档" class="headerlink" title="title: 手机浏览器广告拦截功能文档"></a>title: 手机浏览器广告拦截功能文档</h2><h2 id="1-广告拦截产品需求"><a href="#1-广告拦截产品需求" class="headerlink" title="1 广告拦截产品需求"></a><strong>1 广告拦截产品需求</strong></h2><p>1.1 在页面加载过程中进行拦截（包括重新载入），做到不会让广告闪现后才被拦截</p>
+            <h2 id="1-广告拦截产品需求"><a href="#1-广告拦截产品需求" class="headerlink" title="1 广告拦截产品需求"></a><strong>1 广告拦截产品需求</strong></h2><p>1.1 在页面加载过程中进行拦截（包括重新载入），做到不会让广告闪现后才被拦截</p>
 <p>1.2 目前我们的拦截规则直接使用猎豹的规则list进行修改，通过JS注入和拦截请求的方式进行广告拦截，规则要求服务端可控，浏览器本地会存一份&quot;广告拦截规则&quot;。</p>
 <p>1.3 广告拦截更新机制</p>
 <p>规则文件名：libadblockrules(联盟广告通用);libadblockextrules(根据域名修改css样式); libadwhitedomainrules(白名单规则，运营需求有些网页不拦截广告)</p>
