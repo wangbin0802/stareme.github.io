@@ -3,7 +3,7 @@
   
     
     <entry>
-      <title></title>
+      <title><![CDATA[重写Button实现图片drawableTop跟文字一起居中]]></title>
       <url>%2F2017%2F01%2F02%2F%E9%87%8D%E5%86%99Button%E5%AE%9E%E7%8E%B0%E5%9B%BE%E7%89%87drawableTop%E8%B7%9F%E6%96%87%E5%AD%97%E4%B8%80%E8%B5%B7%E5%B1%85%E4%B8%AD%2F</url>
       <content type="text"><![CDATA[开发中遇到不想在Button外套一层布局，加深布局层次，原生drawableTop属性不能使其居中，需要重写Button的onDraw方法。直接上代码：123456789101112131415161718192021222324252627282930313233343536public class DrawableVerticalButton extends Button &#123; public DrawableVerticalButton(Context context, AttributeSet attrs) &#123; super(context, attrs); &#125; @Override protected void onDraw(Canvas canvas) &#123; canvas = getTopCanvas(canvas); super.onDraw(canvas); &#125; private Canvas getTopCanvas(Canvas canvas) &#123; Drawable[] drawables = getCompoundDrawables(); if (drawables == null) &#123; return canvas; &#125; Drawable drawable = drawables[1];// 上面的drawable if(drawable == null)&#123; drawable = drawables[3];// 下面的drawable &#125; float textSize = getPaint().getTextSize(); int drawHeight = drawable.getIntrinsicHeight(); int drawPadding = getCompoundDrawablePadding(); float contentHeight = textSize + drawHeight + drawPadding; int topPadding = (int) (getHeight() - contentHeight); setPadding(0, topPadding , 0, 0); float dy = (contentHeight - getHeight())/2; canvas.translate(0, dy); Log.i(&quot;DrawableTopButton&quot;, &quot;setPadding(0,&quot;+topPadding+&quot;,0,0&quot;); Log.i(&quot;DrawableTopButton&quot;, &quot;translate(0,&quot;+dy+&quot;)&quot;); return canvas; &#125;&#125;]]></content>
     </entry>
