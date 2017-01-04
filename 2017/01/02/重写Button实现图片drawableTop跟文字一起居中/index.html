@@ -84,16 +84,16 @@
 
 
 
-<meta name="description" content="开发中遇到不想在Button外套一层布局，加深布局层次，原生drawableTop属性不能使其居中，需要重写Button的onDraw方法。直接上代码：123456789101112131415161718192021222324252627282930313233343536public class DrawableVerticalButton extends Button &amp;#123;	pub">
+<meta name="description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x4E2D;&amp;#x9047;&amp;#x5230;&amp;#x4E0D;&amp;#x60F3;&amp;#x5728;Button&amp;#x5916;&amp;#x5957;&amp;#x4E00;&amp;#x5C42;&amp;#x5E03;&amp;#x5C40;&amp;#xFF0C;&amp;#x52A0;&amp;#x6DF1;&amp;#x5E03;&amp;#x5C40;&amp;#x5C42;&amp;#x6B21;&amp;#xFF0C;&amp;#x539F;&amp;#x751F;dr">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重写Button实现图片drawableTop跟文字一起居中">
 <meta property="og:url" content="http://stareme.wang/2017/01/02/重写Button实现图片drawableTop跟文字一起居中/index.html">
 <meta property="og:site_name" content="做另一面的自己">
-<meta property="og:description" content="开发中遇到不想在Button外套一层布局，加深布局层次，原生drawableTop属性不能使其居中，需要重写Button的onDraw方法。直接上代码：123456789101112131415161718192021222324252627282930313233343536public class DrawableVerticalButton extends Button &amp;#123;	pub">
+<meta property="og:description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x4E2D;&amp;#x9047;&amp;#x5230;&amp;#x4E0D;&amp;#x60F3;&amp;#x5728;Button&amp;#x5916;&amp;#x5957;&amp;#x4E00;&amp;#x5C42;&amp;#x5E03;&amp;#x5C40;&amp;#xFF0C;&amp;#x52A0;&amp;#x6DF1;&amp;#x5E03;&amp;#x5C40;&amp;#x5C42;&amp;#x6B21;&amp;#xFF0C;&amp;#x539F;&amp;#x751F;dr">
 <meta property="og:updated_time" content="2017-01-02T07:47:34.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重写Button实现图片drawableTop跟文字一起居中">
-<meta name="twitter:description" content="开发中遇到不想在Button外套一层布局，加深布局层次，原生drawableTop属性不能使其居中，需要重写Button的onDraw方法。直接上代码：123456789101112131415161718192021222324252627282930313233343536public class DrawableVerticalButton extends Button &amp;#123;	pub">
+<meta name="twitter:description" content="&amp;#x5F00;&amp;#x53D1;&amp;#x4E2D;&amp;#x9047;&amp;#x5230;&amp;#x4E0D;&amp;#x60F3;&amp;#x5728;Button&amp;#x5916;&amp;#x5957;&amp;#x4E00;&amp;#x5C42;&amp;#x5E03;&amp;#x5C40;&amp;#xFF0C;&amp;#x52A0;&amp;#x6DF1;&amp;#x5E03;&amp;#x5C40;&amp;#x5C42;&amp;#x6B21;&amp;#xFF0C;&amp;#x539F;&amp;#x751F;dr">
 
 
 
@@ -361,7 +361,7 @@
       
 
       
-        <p>开发中遇到不想在Button外套一层布局，加深布局层次，原生drawableTop属性不能使其居中，需要重写Button的onDraw方法。<br>直接上代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public class DrawableVerticalButton extends Button &#123;</div><div class="line"></div><div class="line">	public DrawableVerticalButton(Context context, AttributeSet attrs) &#123;</div><div class="line">		super(context, attrs);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	@Override</div><div class="line">	protected void onDraw(Canvas canvas) &#123;</div><div class="line">		canvas = getTopCanvas(canvas);</div><div class="line">		super.onDraw(canvas);</div><div class="line">	&#125;</div><div class="line"></div><div class="line">	private Canvas getTopCanvas(Canvas canvas) &#123;</div><div class="line">		Drawable[] drawables = getCompoundDrawables();</div><div class="line">		if (drawables == null) &#123;</div><div class="line">			return canvas;</div><div class="line">		&#125;</div><div class="line">		Drawable drawable = drawables[1];// 上面的drawable</div><div class="line">		if(drawable == null)&#123;</div><div class="line">			drawable = drawables[3];// 下面的drawable</div><div class="line">		&#125;</div><div class="line">		</div><div class="line">		float textSize = getPaint().getTextSize();</div><div class="line">		int drawHeight = drawable.getIntrinsicHeight();</div><div class="line">		int drawPadding = getCompoundDrawablePadding();</div><div class="line">		float contentHeight = textSize + drawHeight + drawPadding;</div><div class="line">		int topPadding = (int) (getHeight() - contentHeight);</div><div class="line">		setPadding(0, topPadding , 0, 0);</div><div class="line">		float dy = (contentHeight - getHeight())/2;</div><div class="line">		canvas.translate(0, dy);</div><div class="line">		Log.i(&quot;DrawableTopButton&quot;, &quot;setPadding(0,&quot;+topPadding+&quot;,0,0&quot;);</div><div class="line">		Log.i(&quot;DrawableTopButton&quot;, &quot;translate(0,&quot;+dy+&quot;)&quot;);</div><div class="line">		return canvas;</div><div class="line">	&#125;</div><div class="line"></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+        <p>&#x5F00;&#x53D1;&#x4E2D;&#x9047;&#x5230;&#x4E0D;&#x60F3;&#x5728;Button&#x5916;&#x5957;&#x4E00;&#x5C42;&#x5E03;&#x5C40;&#xFF0C;&#x52A0;&#x6DF1;&#x5E03;&#x5C40;&#x5C42;&#x6B21;&#xFF0C;&#x539F;&#x751F;drawableTop&#x5C5E;&#x6027;&#x4E0D;&#x80FD;&#x4F7F;&#x5176;&#x5C45;&#x4E2D;&#xFF0C;&#x9700;&#x8981;&#x91CD;&#x5199;Button&#x7684;onDraw&#x65B9;&#x6CD5;&#x3002;<br>&#x76F4;&#x63A5;&#x4E0A;&#x4EE3;&#x7801;&#xFF1A;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div></pre></td><td class="code"><pre><div class="line">public class DrawableVerticalButton extends Button {</div><div class="line"></div><div class="line">	public DrawableVerticalButton(Context context, AttributeSet attrs) {</div><div class="line">		super(context, attrs);</div><div class="line">	}</div><div class="line"></div><div class="line">	@Override</div><div class="line">	protected void onDraw(Canvas canvas) {</div><div class="line">		canvas = getTopCanvas(canvas);</div><div class="line">		super.onDraw(canvas);</div><div class="line">	}</div><div class="line"></div><div class="line">	private Canvas getTopCanvas(Canvas canvas) {</div><div class="line">		Drawable[] drawables = getCompoundDrawables();</div><div class="line">		if (drawables == null) {</div><div class="line">			return canvas;</div><div class="line">		}</div><div class="line">		Drawable drawable = drawables[1];// &#x4E0A;&#x9762;&#x7684;drawable</div><div class="line">		if(drawable == null){</div><div class="line">			drawable = drawables[3];// &#x4E0B;&#x9762;&#x7684;drawable</div><div class="line">		}</div><div class="line">		</div><div class="line">		float textSize = getPaint().getTextSize();</div><div class="line">		int drawHeight = drawable.getIntrinsicHeight();</div><div class="line">		int drawPadding = getCompoundDrawablePadding();</div><div class="line">		float contentHeight = textSize + drawHeight + drawPadding;</div><div class="line">		int topPadding = (int) (getHeight() - contentHeight);</div><div class="line">		setPadding(0, topPadding , 0, 0);</div><div class="line">		float dy = (contentHeight - getHeight())/2;</div><div class="line">		canvas.translate(0, dy);</div><div class="line">		Log.i(&quot;DrawableTopButton&quot;, &quot;setPadding(0,&quot;+topPadding+&quot;,0,0&quot;);</div><div class="line">		Log.i(&quot;DrawableTopButton&quot;, &quot;translate(0,&quot;+dy+&quot;)&quot;);</div><div class="line">		return canvas;</div><div class="line">	}</div><div class="line"></div><div class="line">}</div></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -397,6 +397,10 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/01/04/张一鸣10年面试过2000人：混得好的年轻人都有这 5 种特质！/" rel="prev" title="混得好的年轻人都有这5种特质">
+                混得好的年轻人都有这5种特质 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -459,7 +463,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">5</span>
+              <span class="site-state-item-count">6</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
