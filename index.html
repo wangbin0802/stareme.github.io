@@ -282,6 +282,136 @@
   
 
   <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+  <link itemprop="mainEntityOfPage" href="http://stareme.wang/2017/01/06/Api 23+ 代码申请权限问题/">
+
+  <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <meta itemprop="name" content="stareme">
+    <meta itemprop="description" content="">
+    <meta itemprop="image" content="/uploads/me.png">
+  </span>
+
+  <span style="display:none" itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+    <meta itemprop="name" content="做另一面的自己">
+    <span style="display:none" itemprop="logo" itemscope itemtype="http://schema.org/ImageObject">
+      <img style="display:none;" itemprop="url image" alt="做另一面的自己" src="">
+    </span>
+  </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2017/01/06/Api 23+ 代码申请权限问题/" itemprop="url">
+                  Android Api 23+ 权限请求问题
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2017-01-06T14:37:35+08:00">
+                2017-01-06
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <a href="/2017/01/06/Api 23+ 代码申请权限问题/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/01/06/Api 23+ 代码申请权限问题/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p>&#x5982;&#x7533;&#x8BF7; ==PERMISSION_REQUEST_READ_STORAGE==&#x4E3A;&#x4F8B;&#x3002;</p>
+<h4 id="1-&#x5728;AndroidManifest&#x7533;&#x8BF7;&#x6743;&#x9650;"><a href="#1-&#x5728;AndroidManifest&#x7533;&#x8BF7;&#x6743;&#x9650;" class="headerlink" title="1.&#x5728;AndroidManifest&#x7533;&#x8BF7;&#x6743;&#x9650;"></a>1.&#x5728;AndroidManifest&#x7533;&#x8BF7;&#x6743;&#x9650;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;uses-permission android:name=&quot;android.permission.READ_EXTERNAL_STORAGE&quot; /&gt;</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x6837;&#x8981;&#x662F;&#x5728;Api 23&#x4EE5;&#x4E0B;&#x7684;&#x673A;&#x5668;&#xFF0C;&#x6743;&#x9650;&#x7533;&#x8BF7;&#x5DE5;&#x4F5C;&#x5C31;&#x7B97;&#x5B8C;&#x6210;&#x4E86;&#x3002;</p>
+<h4 id="2-onCreate-&#x4E2D;&#x68C0;&#x67E5;&#x6743;&#x9650;&#x662F;&#x5426;&#x88AB;&#x8D4B;&#x4E88;&#xFF0C;"><a href="#2-onCreate-&#x4E2D;&#x68C0;&#x67E5;&#x6743;&#x9650;&#x662F;&#x5426;&#x88AB;&#x8D4B;&#x4E88;&#xFF0C;" class="headerlink" title="2.onCreate &#x4E2D;&#x68C0;&#x67E5;&#x6743;&#x9650;&#x662F;&#x5426;&#x88AB;&#x8D4B;&#x4E88;&#xFF0C;"></a>2.onCreate &#x4E2D;&#x68C0;&#x67E5;&#x6743;&#x9650;&#x662F;&#x5426;&#x88AB;&#x8D4B;&#x4E88;&#xFF0C;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">if (ActivityCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE)</div><div class="line">                == PackageManager.PERMISSION_GRANTED) {</div><div class="line">            startMainActivity();</div><div class="line">    }</div></pre></td></tr></table></figure>
+<h4 id="3-&#x5982;&#x679C;&#x6743;&#x9650;&#x6CA1;&#x6709;&#x88AB;&#x7533;&#x8BF7;&#xFF0C;&#x5F00;&#x59CB;&#x7533;&#x8BF7;&#x6743;&#x9650;"><a href="#3-&#x5982;&#x679C;&#x6743;&#x9650;&#x6CA1;&#x6709;&#x88AB;&#x7533;&#x8BF7;&#xFF0C;&#x5F00;&#x59CB;&#x7533;&#x8BF7;&#x6743;&#x9650;" class="headerlink" title="3.&#x5982;&#x679C;&#x6743;&#x9650;&#x6CA1;&#x6709;&#x88AB;&#x7533;&#x8BF7;&#xFF0C;&#x5F00;&#x59CB;&#x7533;&#x8BF7;&#x6743;&#x9650;"></a>3.&#x5982;&#x679C;&#x6743;&#x9650;&#x6CA1;&#x6709;&#x88AB;&#x7533;&#x8BF7;&#xFF0C;&#x5F00;&#x59CB;&#x7533;&#x8BF7;&#x6743;&#x9650;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">ActivityCompat.requestPermissions(</div><div class="line">                this,</div><div class="line">                new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},</div><div class="line">                PERMISSION_REQUEST_READ_STORAGE);</div></pre></td></tr></table></figure>
+<p>&#x8FD9;&#x4E2A;&#x65B9;&#x6CD5;&#x7684;&#x6CE8;&#x91CA;&#x975E;&#x5E38;&#x8BE6;&#x7EC6;&#xFF0C;&#x53EF;&#x4EE5;&#x67E5;&#x770B;api&#x6587;&#x6863;&#x3002;</p>
+<h4 id="4-&#x8FD9;&#x4E2A;activity&#x5B9E;&#x73B0;ActivityCompat-OnRequestPermissionsResultCallback&#x63A5;&#x53E3;&#xFF0C;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x662F;&#x5426;&#x6388;&#x6743;&#x4F1A;&#x6709;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF1A;"><a href="#4-&#x8FD9;&#x4E2A;activity&#x5B9E;&#x73B0;ActivityCompat-OnRequestPermissionsResultCallback&#x63A5;&#x53E3;&#xFF0C;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x662F;&#x5426;&#x6388;&#x6743;&#x4F1A;&#x6709;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF1A;" class="headerlink" title="4.&#x8FD9;&#x4E2A;activity&#x5B9E;&#x73B0;ActivityCompat.OnRequestPermissionsResultCallback&#x63A5;&#x53E3;&#xFF0C;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x662F;&#x5426;&#x6388;&#x6743;&#x4F1A;&#x6709;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF1A;"></a>4.&#x8FD9;&#x4E2A;activity&#x5B9E;&#x73B0;ActivityCompat.OnRequestPermissionsResultCallback&#x63A5;&#x53E3;&#xFF0C;&#x7528;&#x6237;&#x70B9;&#x51FB;&#x662F;&#x5426;&#x6388;&#x6743;&#x4F1A;&#x6709;&#x56DE;&#x8C03;&#x65B9;&#x6CD5;&#xFF1A;</h4><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line">/*</div><div class="line">     * Callback received when a permissions request has been completed.</div><div class="line">     */</div><div class="line">    @Override</div><div class="line">    public void onRequestPermissionsResult(</div><div class="line">            int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {</div><div class="line"></div><div class="line">        String permissionResult = &quot;Request code: &quot; + requestCode + &quot;, Permissions: &quot; + permissions</div><div class="line">                + &quot;, Results: &quot; + grantResults;</div><div class="line">        Log.d(TAG, &quot;onRequestPermissionsResult(): &quot; + permissionResult);</div><div class="line"></div><div class="line">        if (requestCode == PERMISSION_REQUEST_READ_STORAGE) {</div><div class="line">            // Close activity regardless of user&apos;s decision (decision picked up in main activity).</div><div class="line">            startMainActivity();</div><div class="line">        }</div><div class="line">    }</div></pre></td></tr></table></figure>
+
+          
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
   <link itemprop="mainEntityOfPage" href="http://stareme.wang/2017/01/04/张一鸣10年面试过2000人：混得好的年轻人都有这 5 种特质！/">
 
   <span style="display:none" itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1209,7 +1339,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">6</span>
+              <span class="site-state-item-count">7</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
